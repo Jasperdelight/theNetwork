@@ -2,8 +2,8 @@
   <div class="container-fluid">
     <div class="d-flex justify-content-around">
 
-<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Older</button>
-<button class="btn btn-dark text-light" @click="changePage(newer)">Newer</button>
+<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Next</button>
+<button class="btn btn-dark text-light" @click="changePage(newer)">Previous</button>
 </div>
 <section class="row justify-content-center" >
   <div class="col-1" v-for="add in adds" :key="add.title">
@@ -35,8 +35,8 @@
 </section>
 <div class="d-flex justify-content-around">
 
-<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Older</button>
-<button class="btn btn-dark text-light" @click="changePage(newer)">Newer</button>
+<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Previous</button>
+<button class="btn btn-dark text-light" @click="changePage(newer)">Next</button>
 </div>
 </div>
 </template>
