@@ -6,7 +6,7 @@
           <!-- <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}">
 
           </router-link> -->
-            <img class="img-fluid avatar" :src="post.creator.picture" alt="">
+            <img class="img-fluid profilePic" :src="post.creator.picture" alt="">
         </div>
         <div class="col-6 text-end">
           {{ post.creator.name }}
@@ -32,6 +32,7 @@
 
 
 <script>
+import { useRoute } from 'vue-router';
 import { Post } from '../models/Post.js';
 import { postsService } from '../services/PostsService.js';
 
@@ -40,7 +41,10 @@ export default {
     post: {type: Post, required: true}
   },
   setup(props){
+    // const route = useRoute()
+
     return {
+  
 
       setActivePost(){
         postsService.setActivePost(props.post)
@@ -56,7 +60,7 @@ export default {
 
 
 <style lang="scss" scoped>
-.avatar{
+.profilePic{
   height: 5vh;
   width: 5vh;
   border-radius: 50%;
