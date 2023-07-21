@@ -3,10 +3,10 @@
     <div class="card col-12">
       <div class="row justify-content-between">
         <div class="col-6">
-          <!-- <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}">
+          <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}">
 
-          </router-link> -->
             <img class="img-fluid profilePic" :src="post.creator.picture" alt="">
+          </router-link>
         </div>
         <div class="col-6 text-end">
           {{ post.creator.name }}

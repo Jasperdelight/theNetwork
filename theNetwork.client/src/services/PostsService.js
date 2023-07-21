@@ -1,4 +1,5 @@
 import { AppState } from "../AppState.js"
+import { Account } from "../models/Account.js"
 import { Post } from "../models/Post.js"
 import { logger } from "../utils/Logger.js"
 import { api } from "./AxiosService.js"
@@ -38,6 +39,13 @@ class PostsService {
     AppState.older = res.data.newer
   }
 
+  async getProfile(profileId) {
+    const res = await api.get(`api/profiles/${profileId}`)
+    // logger.log(res.data)
+    const gotProfile = new Account(res.data)
+    AppState.activeProfile = gotProfile
+    // logger.log('profile in appstate', AppState.activeProfile)
+  }
 
 }
 export const postsService = new PostsService()

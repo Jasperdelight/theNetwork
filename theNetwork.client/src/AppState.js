@@ -12,6 +12,7 @@ export const AppState = reactive({
   /** @type {import('./models/Add.js').Add[]} */
   adds: [],
   newer: null,
-  older: null
+  older: null,
+  activeProfile: null
 
 })
