@@ -6,9 +6,11 @@ import { api } from "./AxiosService.js"
 class PostsService {
   async getPosts() {
     const res = await api.get('api/posts')
-    logger.log('posts?', res.data.posts)
+    logger.log('posts?', res.data)
     const posts = res.data.posts.map(p => new Post(p))
     AppState.posts = posts
+    AppState.newer = res.data.older
+    AppState.older = res.data.newer
     // logger.log('posts in the Appstate', AppState.posts)
   }
   async createPost(postData) {
@@ -20,14 +22,20 @@ class PostsService {
   }
   setActivePost(post) {
     AppState.activePost = post
-    logger.log(AppState.activePost)
+    // logger.log(AppState.activePost)
   }
   async likePost(post) {
     const postId = post.id
-    logger.log('post data in service', postId)
+    // logger.log('post data in service', postId)
     const res = await api.post(`api/posts/${postId}/like`)
     logger.log('post liked', res)
-
+  }
+  async changePage(url) {
+    const res = await api.get(url)
+    const newPosts = res.data.posts.map(p => new Post(p))
+    AppState.posts = newPosts
+    AppState.newer = res.data.older
+    AppState.older = res.data.newer
   }
 
 

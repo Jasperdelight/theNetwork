@@ -1,5 +1,10 @@
 <template>
   <div class="container-fluid">
+    <div class="d-flex justify-content-around">
+
+<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Older</button>
+<button class="btn btn-dark text-light" @click="changePage(newer)">Newer</button>
+</div>
 <section class="row justify-content-center" >
   <div class="col-1" v-for="add in adds" :key="add.title">
 <img class="addImg img-fluid" :src="add.tall" alt="">
@@ -28,6 +33,11 @@
     <PostCard :post="post"/>
   </div>
 </section>
+<div class="d-flex justify-content-around">
+
+<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Older</button>
+<button class="btn btn-dark text-light" @click="changePage(newer)">Newer</button>
+</div>
 </div>
 </template>
 
@@ -69,19 +79,31 @@ export default {
       editable,
       posts: computed(()=> AppState.posts),
       adds: computed(()=> AppState.adds),
+      older: computed(() => AppState.older),
+      newer: computed(() => AppState.newer),
+
 
       async createPost(){
         try{
             const postData = editable.value
-            logger.log('post data', postData)
+            // logger.log('post data', postData)
             await postsService.createPost(postData)
             editable.value = {}
         } catch(error) {
             Pop.error(error.message);
             logger.log(error);
         }
-        
+      },
+
+      async changePage(url){
+        try{
+            await postsService.changePage(url)
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+        }
       }
+
     }
   }
 }
