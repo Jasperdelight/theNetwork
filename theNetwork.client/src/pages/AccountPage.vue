@@ -29,6 +29,10 @@
             <label for="linkedin">LinkedIn</label>
             <input class="form-control" type="url" id="linkedin" minlength="3" maxlength="100" v-model="editable.linkedin">
           </div>
+          <div class="mb-2">
+            <label for="github">github</label>
+            <input class="form-control" type="url" id="github" minlength="3" maxlength="100" v-model="editable.github">
+          </div>
           <div class="mb-2 text-end">
             <button class="btn btn-success" type="submit">Submit</button>
           </div>

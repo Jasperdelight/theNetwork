@@ -15,7 +15,7 @@
     </div>
 
     <div class="mt-2">
-      <img class="postImg selectable" :src="post.imgUrl" alt="" data-bs-toggle="modal" data-bs-target="#projectModal" @click="setActivePost()">
+      <img class="postImg selectable" :src="post.imgUrl" alt="" data-bs-toggle="modal" data-bs-target="#postModal" @click="setActivePost()">
       <p class="">
         {{ post.body }}
       </p>
@@ -26,7 +26,7 @@
           <div class="col-6">
             <span class="pe-2">{{ formatDate(post.createdAt) }}</span>
             <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-danger ">delete</button>
-            <button v-if="account.id == post.creatorId"  class="btn btn-primary ">Edit</button>
+            <button @click="setActivePost()" v-if="account.id == post.creatorId" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-primary ">Edit</button>
           </div>
           <div class="col-6">
         <div class="text-end">{{ post.likes.length }}

@@ -92,5 +92,14 @@ class PostsService {
     AppState.searchedProfiles = foundProfiles
   }
 
+  async editPost(postData) {
+    logger.log('postdata,', postData)
+    const postId = postData.id
+    const res = await api.put(`api/posts/${postId}`, postData)
+    let updatedPost = new Post(res.data)
+    AppState.activePost = updatedPost
+
+  }
+
 }
 export const postsService = new PostsService()
