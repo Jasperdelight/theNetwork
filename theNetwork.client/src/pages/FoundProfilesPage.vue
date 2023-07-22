@@ -15,7 +15,6 @@
         </div>
         <div class="col-6 text-end">
           {{ profile.name }}
-          {{ profile.id }}
         </div>
       
       </div>
