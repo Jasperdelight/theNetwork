@@ -19,6 +19,22 @@
 
     </section>
   </div>
+<section class="row justify-content-center">
+
+  <div class="d-flex justify-content-around">
+    
+<button class="btn btn-dark text-light" @click="changeProfilePage(older)" :disabled="!older">Previous</button>
+<button class="btn btn-dark text-light" @click="changeProfilePage(newer)" :disabled="!newer">Next</button>
+</div>
+  <div class="col-8" v-for="post in activeProfilePosts" :key="post.id">
+    <PostCard :post="post"/>
+  </div>
+<div class="d-flex justify-content-around">
+
+<button class="btn btn-dark text-light" @click="changeProfilePage(older)" :disabled="!older">Previous</button>
+<button class="btn btn-dark text-light" @click="changeProfilePage(newer)" :disabled="!newer" >Next</button>
+</div>
+</section>
 
 
 </template>
@@ -48,12 +64,40 @@ export default {
       }
     }
 
+    async function getActiveProfilePosts(){
+      try{
+          const profileId = route.params.profileId
+          await postsService.getActiveProfilePosts(profileId)
+      } catch(error) {
+          Pop.error(error.message);
+          logger.log(error);
+      }
+    }
+
     onMounted(()=>{
-      getProfile()
+      getProfile(),
+      getActiveProfilePosts()
     })
 
     return {
-      activeProfile: computed(()=> AppState.activeProfile)
+      activeProfile: computed(()=> AppState.activeProfile),
+      activeProfilePosts: computed(()=> AppState.activeProfilePosts),
+      adds: computed(()=> AppState.adds),
+      older: computed(() => AppState.older),
+      newer: computed(() => AppState.newer),
+      account: computed(()=> AppState.account),
+
+
+
+      async changeProfilePage(url){
+        try{
+            await postsService.changeProfilePage(url)
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+        }
+      }
+
     }
   }
 }

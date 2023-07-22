@@ -7,12 +7,19 @@ export const AppState = reactive({
   account: {},
   /** @type {import('./models/Post.js').Post[]} */
   posts: [],
+  /** @type {import('./models/Post.js').Post[]} */
+  searchedPosts: [],
   /** @type {import('./models/Post.js').Post|null} */
   activePost: null,
   /** @type {import('./models/Add.js').Add[]} */
   adds: [],
   newer: null,
   older: null,
-  activeProfile: null
+  /** @type {import('./models/Profile.js').Profile|null} */
+  activeProfile: null,
+  /** @type {import('./models/Profile.js').Profile[]} */
+  searchedProfiles: [],
+  /** @type {import('./models/Post.js').Post[]} */
+  activeProfilePosts: [],
 
 })

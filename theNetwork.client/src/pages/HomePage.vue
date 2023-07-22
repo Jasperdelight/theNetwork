@@ -1,17 +1,16 @@
 <template>
   <div class="container-fluid">
-    <div class="d-flex justify-content-around">
 
-<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Next</button>
-<button class="btn btn-dark text-light" @click="changePage(newer)">Previous</button>
+<div class="row">
+  <div class="col-2" v-for="add in adds" :key="add.title">
+  <img class="addImg img-fluid" :src="add.tall" alt="">
+  </div>
+  
 </div>
 <section class="row justify-content-center" >
-  <div class="col-1" v-for="add in adds" :key="add.title">
-<img class="addImg img-fluid" :src="add.tall" alt="">
-  </div>
 
 
-  <div class="col-8 text-center">
+  <div v-if="account.id" class="col-8 text-center">
     <form @submit.prevent="createPost()">
       <div>
         <label for="newPost">Create Post</label>
@@ -25,10 +24,12 @@
     </form>
       
   </div>
-  <div class="col-2">
-    
-  </div>
 
+  <div class="d-flex justify-content-around">
+
+<button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Previous</button>
+<button class="btn btn-dark text-light" @click="changePage(newer)">Next</button>
+</div>
   <div class="col-8" v-for="post in posts" :key="post.id">
     <PostCard :post="post"/>
   </div>
@@ -81,6 +82,7 @@ export default {
       adds: computed(()=> AppState.adds),
       older: computed(() => AppState.older),
       newer: computed(() => AppState.newer),
+      account: computed(()=> AppState.account),
 
 
       async createPost(){

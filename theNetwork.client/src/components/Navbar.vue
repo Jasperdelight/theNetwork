@@ -9,35 +9,71 @@
       aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav me-auto">
+    <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarText">
+      
+      <form @submit.prevent="searchProfiles()">
+        <label for="searchProfile">searchProfile</label>
+        <input v-model="editable.searchProfile" type="text" id="searchProfile">
+        <button class="btn btn-success" type="submit">searchProfile</button>
+      </form>
+      <!-- <ul class="navbar-nav me-auto">
         <li>
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>
         </li>
-      </ul>
-      <form @submit.prevent="">
+      </ul> -->
+      <form @submit.prevent="searchPosts()">
         <label for="search">search</label>
         <input v-model="editable.search" type="text" id="search">
         <button class="btn btn-success" type="submit">search</button>
       </form>
       <!-- LOGIN COMPONENT HERE -->
-      <Login />
     </div>
+    <Login />
   </nav>
 </template>
 
 <script>
 import { ref } from 'vue';
 import Login from './Login.vue';
+import { router } from '../router.js';
+import { logger } from '../utils/Logger.js';
+import Pop from '../utils/Pop.js';
+import { postsService } from '../services/PostsService.js';
 export default {
   setup() {
     const editable = ref({})
 
 
     return {
-      editable
+      editable,
+
+
+      async searchPosts(){
+        try{
+          const searchQuery = editable.value.search
+          logger.log(searchQuery)
+          router.push(`/posts?query=${searchQuery}`)
+            await postsService.searchPosts(searchQuery)
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+        }
+      },
+
+      async searchProfiles(){
+        try{
+            const searchQuery = editable.value.searchProfile
+            logger.log('search profile query', searchQuery)
+            router.push(`/profiles?query=${searchQuery}`)
+            await postsService.searchProfiles(searchQuery)
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+        }
+      }
+      
     }
   },
   components: { Login }
