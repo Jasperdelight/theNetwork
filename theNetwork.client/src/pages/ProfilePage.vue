@@ -10,9 +10,9 @@
         <div class="col-12">
           <p>{{ activeProfile.bio }}</p>
 
-          <a :href="activeProfile.linkedin"><i class="mdi mdi-linkedin"></i></a>
+          <a v-if="activeProfile.linkedin" :href="activeProfile.linkedin"><i class="mdi mdi-linkedin fs-4"></i></a>
         
-          <a :href="activeProfile.github"><i class="mdi mdi-github"></i></a>
+          <a v-if="activeProfile.github" :href="activeProfile.github"><i class="mdi mdi-github fs-4"></i></a>
         
         </div>
 

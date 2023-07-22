@@ -26,10 +26,12 @@
           <div class="col-6">
             <span class="pe-2">{{ formatDate(post.createdAt) }}</span>
             <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-danger ">delete</button>
+            <button v-if="account.id == post.creatorId"  class="btn btn-primary ">Edit</button>
           </div>
           <div class="col-6">
         <div class="text-end">{{ post.likes.length }}
-          <i @click="likePost()" class="mdi mdi-thumb-up text-end selectable"></i>
+          <i v-if="!account.id" class="mdi mdi-thumb-up text-end"></i>
+          <i v-if="account.id" @click="likePost()" class="mdi mdi-thumb-up text-end selectable"></i>
         </div>
           </div>
         </section>
@@ -52,6 +54,8 @@ import { Post } from '../models/Post.js';
 import { postsService } from '../services/PostsService.js';
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
+import Pop from '../utils/Pop.js';
+import { logger } from '../utils/Logger.js';
 
 export default {
   props: {
@@ -74,7 +78,17 @@ export default {
         await postsService.likePost(props.post)
       },
       async deletePost(){
-        await postsService.deletePost(props.post)
+        try{
+          const wantsToRemove = await Pop.confirm('are you sure you want to delete?')
+          if (!wantsToRemove) {
+            return
+          }
+          await postsService.deletePost(props.post)
+          
+        } catch(error) {
+            Pop.error(error.message);
+            logger.log(error);
+        }
       },
 
       formatDate(createdAt){

@@ -61,6 +61,7 @@ export default {
         try{
             const formData = editable.value
             await accountService.editAccount(formData)
+            Pop.toast('Account Info Changed')
         } catch(error) {
             Pop.error(error.message);
             logger.log(error);
