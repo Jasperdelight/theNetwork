@@ -14,7 +14,7 @@
       </div>
     </div>
 <div class="mt-2 text-center">
-  <img class="postImg selectable" :src="post.imgUrl" alt="" data-bs-toggle="modal" data-bs-target="#postModal" @click="setActivePost()">
+  <img v-if="post.imgUrl" class="postImg selectable" :src="post.imgUrl" alt="postImage" data-bs-toggle="modal" data-bs-target="#postModal" @click="setActivePost()">
 
 </div>
     <div class="mt-2">
