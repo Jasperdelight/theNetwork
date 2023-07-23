@@ -3,19 +3,22 @@
     <Navbar />
   </header>
   <main>
-    <div class="left">
+    <div class="profile bg-light">
       <ProfileBar v-if="account.id"/>
+
+    </div>
+    <div class="left">
       <AddsPage/>
+    </div>
+    <div class="right">
+      <AddsPageTwo/>
+
     </div>
     <div class="main">
       <router-view />
 
     </div>
     
-    <div class="right">
-      <AddsPageTwo/>
-
-    </div>
   </main>
    <footer class="">
   </footer>
@@ -168,10 +171,20 @@ footer {
 .left {
     width: 178px;
     float:left;
+    height: 200px;
+    margin-top: 260px;
+}
+.profile {
+    width: 178px;
+    position: fixed;
 }
 .right {
     width: 178px;
-    float:right
+float: right;
+margin-top: 160px;
+// position: relative;
+// left: 1000px;
+
 }
 .main {
   margin-left:178px;
