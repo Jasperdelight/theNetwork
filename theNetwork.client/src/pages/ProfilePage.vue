@@ -40,8 +40,8 @@
 <button class="btn btn-dark text-light" @click="changeProfilePage(older)" :disabled="!older">Previous</button>
 <button class="btn btn-dark text-light" @click="changeProfilePage(newer)" :disabled="!newer">Next</button>
 </div>
-<p class="text-center">Page: {{ page }} / {{ totalPages }}</p>
-  <div class="col-8" v-for="post in activeProfilePosts" :key="post.id">
+<p v-if="page" class="text-center">Page: {{ page }} of {{ totalPages }}</p>
+  <div class="col-md-8 col-12" v-for="post in activeProfilePosts" :key="post.id">
     <PostCard :post="post"/>
   </div>
 <div class="d-flex justify-content-around">

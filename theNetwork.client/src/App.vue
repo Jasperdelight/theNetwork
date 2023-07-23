@@ -4,6 +4,7 @@
   </header>
   <main>
     <div class="left">
+      <ProfileBar v-if="account.id"/>
       <AddsPage/>
     </div>
     <div class="main">
@@ -36,7 +37,8 @@
             <p>{{ activePost.body }}</p>
             <div class="d-flex text-end">
               <p>{{ activePost.likes.length }}</p>
-              <i @click="likePost(activePost)" class="mdi mdi-thumb-up selectable"></i>
+              <i v-if="!account.id" class="mdi mdi-thumb-up text-end"></i>
+          <i v-if="account.id" @click="likePost(activePost)" class="mdi mdi-thumb-up text-end selectable"></i>
 
             </div>
           </div>
@@ -120,6 +122,7 @@ export default {
       editable,
       activePost: computed(()=> AppState.activePost),
       appState: computed(() => AppState),
+      account: computed(()=> AppState.account),
 
     
     async editPost(){

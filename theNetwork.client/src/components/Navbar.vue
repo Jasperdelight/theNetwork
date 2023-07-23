@@ -16,8 +16,10 @@
         <label for="searchProfile"></label>
         <input v-model="editable.searchProfile" type="text" id="searchProfile">
       </form>
+
+      <h1 class="text-light">The Network</h1>
       <!-- <ul class="navbar-nav me-auto">
-        <li>
+        <li>  
           <router-link :to="{ name: 'About' }" class="btn text-success lighten-30 selectable text-uppercase">
             About
           </router-link>

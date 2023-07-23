@@ -10,7 +10,7 @@
 <section class="row justify-content-center" >
 
 
-  <div v-if="account.id" class="col-8 text-center">
+  <div v-if="account.id" class="col-md-8 col-12 text-center">
     <form @submit.prevent="createPost()">
       <div>
         <label for="newPost">Create Post</label>
@@ -30,7 +30,7 @@
 <button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Previous</button>
 <button class="btn btn-dark text-light" @click="changePage(newer)">Next</button>
 </div>
-<p class="text-center">Page: {{page}} / {{ totalPages }} </p>
+<p v-if="page" class="text-center">Page: {{page}} of {{ totalPages }} </p>
   <div class="col-8" v-for="post in posts" :key="post.id">
     <PostCard :post="post"/>
   </div>

@@ -7,7 +7,7 @@
 <button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Previous</button>
 <button class="btn btn-dark text-light" @click="changePage(newer) " :disabled="!newer">Next</button>
 </div>
-<p v-if="page" class="text-center">Page: {{ page }} / {{ totalPages }}</p>
+<p class="text-center">Page: {{ page }} {{ totalPages }}</p>
 <div class="col-8" v-for="post in searchedPosts" :key="post.id">
     <PostCard :post="post"/>
   </div>

@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid">
     <section class="row">
-      <div class="col-12">
+      <div class="col-12 mt-4">
         <img :src="addOne?.tall" alt="ad" class="img-fluid">
       </div>
 
