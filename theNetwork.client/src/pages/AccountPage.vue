@@ -26,6 +26,14 @@
             <textarea class="form-control" name="bio" id="bio" cols="30" rows="10" v-model="editable.bio"></textarea>
           </div>
           <div class="mb-2">
+            <label for="class">Class</label>
+            <input class="form-control" type="text" id="class" minlength="3" maxlength="200" v-model="editable.class">
+          </div>
+          <div class="mb-2">
+            <label for="graduated">Graduated?</label>
+            <input class="form-control" type="boolean" id="graduated" minlength="3" maxlength="200" v-model="editable.graduated">
+          </div>
+          <div class="mb-2">
             <label for="linkedin">LinkedIn</label>
             <input class="form-control" type="url" id="linkedin" minlength="3" maxlength="100" v-model="editable.linkedin">
           </div>
@@ -81,4 +89,6 @@ export default {
 img {
   max-width: 100px;
 }
+
+
 </style>

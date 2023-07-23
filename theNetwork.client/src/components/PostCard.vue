@@ -1,22 +1,24 @@
 <template>
   <div class="row elevation-3 mb-3">
-    <div class="card col-12">
+    <div class=" col-12">
       <div class="row justify-content-between">
         <div class="col-6">
           <router-link :to="{name: 'Profile', params: {profileId: post.creatorId}}">
 
             <img class="img-fluid profilePic" :src="post.creator.picture" alt="">
           </router-link>
-        </div>
-        <div class="col-6 text-end">
           {{ post.creator.name }}
+        </div>
+        <div class="col-6 text-start">
         </div>
       </div>
     </div>
+<div class="mt-2 text-center">
+  <img class="postImg selectable" :src="post.imgUrl" alt="" data-bs-toggle="modal" data-bs-target="#postModal" @click="setActivePost()">
 
+</div>
     <div class="mt-2">
-      <img class="postImg selectable" :src="post.imgUrl" alt="" data-bs-toggle="modal" data-bs-target="#postModal" @click="setActivePost()">
-      <p class="">
+    <p class="text-center">
         {{ post.body }}
       </p>
     </div>
@@ -25,8 +27,8 @@
         <section class="row">
           <div class="col-6">
             <span class="pe-2">{{ formatDate(post.createdAt) }}</span>
-            <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-danger ">delete</button>
-            <button @click="setActivePost()" v-if="account.id == post.creatorId" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-primary ">Edit</button>
+            <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-outline-danger ">delete</button>
+            <button @click="setActivePost()" v-if="account.id == post.creatorId" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-outline-success ">Edit</button>
           </div>
           <div class="col-6">
         <div class="text-end">{{ post.likes.length }}

@@ -30,6 +30,7 @@
 <button class="btn btn-dark text-light" @click="changePage(older)" :disabled="!older">Previous</button>
 <button class="btn btn-dark text-light" @click="changePage(newer)">Next</button>
 </div>
+<p class="text-center">Page: {{page}} / {{ totalPages }} </p>
   <div class="col-8" v-for="post in posts" :key="post.id">
     <PostCard :post="post"/>
   </div>
@@ -131,7 +132,8 @@ export default {
       account: computed(()=> AppState.account),
       addOne: computed(()=> AppState.adds[0]),
       addTwo: computed(()=> AppState.adds[1]),
-
+      page: computed(()=> AppState.page),
+      totalPages: computed(()=> AppState.totalPages),
 
       async createPost(){
         try{

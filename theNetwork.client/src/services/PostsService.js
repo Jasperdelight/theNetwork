@@ -13,7 +13,9 @@ class PostsService {
     AppState.posts = posts
     AppState.newer = res.data.older
     AppState.older = res.data.newer
-    // logger.log('posts in the Appstate', AppState.posts)
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
+    logger.log('page?', AppState.page)
   }
   async createPost(postData) {
     const res = await api.post('api/posts', postData)
@@ -55,6 +57,8 @@ class PostsService {
     AppState.searchedPosts = newPosts
     AppState.newer = res.data.older
     AppState.older = res.data.newer
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
   async changeProfilePage(url) {
     const res = await api.get(url)
@@ -62,6 +66,8 @@ class PostsService {
     AppState.activeProfilePosts = newPosts
     AppState.newer = res.data.older
     AppState.older = res.data.newer
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
 
   async getProfile(profileId) {
@@ -78,6 +84,8 @@ class PostsService {
     AppState.activeProfilePosts = foundPosts
     AppState.newer = res.data.older
     AppState.older = res.data.newer
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
 
   async searchPosts(searchQuery) {
@@ -88,7 +96,11 @@ class PostsService {
     const foundProfiles = resTwo.data.map(ffp => new Profile(ffp))
     AppState.searchedPosts = foundPosts
     AppState.searchedProfiles = foundProfiles
-    logger.log('found profiles', AppState.searchedProfiles)
+    AppState.newer = res.data.older
+    AppState.older = res.data.newer
+    AppState.page = res.data.page
+    // logger.log('found profiles', AppState.searchedProfiles)
+    AppState.totalPages = res.data.totalPages
   }
 
   async searchProfiles(searchQuery) {
@@ -96,6 +108,10 @@ class PostsService {
     logger.log('search results?', res.data)
     const foundProfiles = res.data.map(fp => new Profile(fp))
     AppState.searchedProfiles = foundProfiles
+    AppState.newer = res.data.older
+    AppState.older = res.data.newer
+    AppState.page = res.data.page
+    AppState.totalPages = res.data.totalPages
   }
 
   async editPost(postData) {

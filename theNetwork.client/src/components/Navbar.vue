@@ -12,7 +12,7 @@
     <div class="collapse navbar-collapse d-flex justify-content-between" id="navbarText">
       
       <form @submit.prevent="searchProfiles()">
-        <button class="btn btn-success" type="submit">searchProfiles</button>
+        <button class="btn btn-success" type="submit">SearchProfiles</button>
         <label for="searchProfile"></label>
         <input v-model="editable.searchProfile" type="text" id="searchProfile">
       </form>
@@ -26,7 +26,7 @@
       <form @submit.prevent="searchPosts()">
         <label for="search"></label>
         <input v-model="editable.search" type="text" id="search">
-        <button class="btn btn-success" type="submit">search</button>
+        <button class="btn btn-success" type="submit">SearchPosts</button>
       </form>
       <!-- LOGIN COMPONENT HERE -->
     </div>

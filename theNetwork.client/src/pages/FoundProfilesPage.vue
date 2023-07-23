@@ -1,21 +1,23 @@
 <template>
-  found profiles page 
+
   <div class="container-fluid">
     <section class="row justify-content-center">
+      <h1>Found Profiles</h1>
 <div class="col-8" v-for="profile in searchedProfiles" :key="profile.id">
 
-  <div class="row elevation-3">
-    <div class="card col-12">
-      <div class="row justify-content-between">
-        <div class="col-6">
-          <router-link :to="{name: 'Profile', params: {profileId: profile.id}}">
+  <div class="row ">
+    <div class="elevation-3 col-12">
+      <div class="row">
+        <router-link :to="{name: 'Profile', params: {profileId: profile.id}}">
+        <div class="col-12 p-2">
 
             <img class="img-fluid profilePic" :src="profile.picture" alt="">
-          </router-link>
-        </div>
-        <div class="col-6 text-end">
-          {{ profile.name }}
-        </div>
+            <p class="text-dark mb-0">
+              {{ profile.name }}
+              <!-- <span class="text-dark text-end">{{ profile.class }}</span> -->
+            </p>
+          </div>
+        </router-link>
       
       </div>
     </div>
@@ -44,6 +46,7 @@ export default {
 
 
     return {
+      
 
       searchedProfiles: computed(()=> AppState.searchedProfiles),
 
