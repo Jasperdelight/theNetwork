@@ -1,5 +1,5 @@
 <template>
-  <div class="row elevation-3 mb-3">
+  <div class="row elevation-3 mb-3 rounded">
     <div class=" col-12">
       <div class="row justify-content-between">
         <div class="col-6">
@@ -27,8 +27,11 @@
         <section class="row">
           <div class="col-6">
             <span class="pe-2">{{ formatDate(post.createdAt) }}</span>
-            <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-outline-danger ">delete</button>
-            <button @click="setActivePost()" v-if="account.id == post.creatorId" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-outline-success ">Edit</button>
+            <div>
+
+              <button v-if="account.id == post.creatorId" @click="deletePost()" class="btn btn-outline-danger me-2">delete</button>
+              <button @click="setActivePost()" v-if="account.id == post.creatorId" data-bs-toggle="modal" data-bs-target="#editModal" class="btn btn-outline-success ">Edit</button>
+            </div>
           </div>
           <div class="col-6">
         <div class="text-end">{{ post.likes.length }}
