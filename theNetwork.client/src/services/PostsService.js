@@ -32,6 +32,7 @@ class PostsService {
     const res = await api.post(`api/posts/${postId}/like`)
     logger.log('post liked', res.data)
     const likedPost = new Post(res.data)
+    AppState.activePost = likedPost
     const index = AppState.posts.findIndex((p) => p.id == postId);
     if (index !== -1) {
       AppState.posts.splice(index, 1, likedPost);
@@ -51,6 +52,7 @@ class PostsService {
     const res = await api.get(url)
     const newPosts = res.data.posts.map(p => new Post(p))
     AppState.posts = newPosts
+    AppState.searchedPosts = newPosts
     AppState.newer = res.data.older
     AppState.older = res.data.newer
   }
@@ -81,8 +83,12 @@ class PostsService {
   async searchPosts(searchQuery) {
     const res = await api.get(`api/posts?query=${searchQuery}`)
     // logger.log('search results?', res.data)
+    const resTwo = await api.get(`api/profiles?query=${searchQuery}`)
     const foundPosts = res.data.posts.map(fp => new Post(fp))
+    const foundProfiles = resTwo.data.map(ffp => new Profile(ffp))
     AppState.searchedPosts = foundPosts
+    AppState.searchedProfiles = foundProfiles
+    logger.log('found profiles', AppState.searchedProfiles)
   }
 
   async searchProfiles(searchQuery) {

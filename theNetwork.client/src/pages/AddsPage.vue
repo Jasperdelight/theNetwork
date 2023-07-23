@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <section class="row">
       <div class="col-12">
-        <img :src="addOne?.tall" alt="add" class="img-fluid">
+        <img :src="addOne?.tall" alt="ad" class="img-fluid">
       </div>
 
     </section>

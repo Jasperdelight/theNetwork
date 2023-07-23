@@ -30,10 +30,15 @@
       <div class="modal-body container">
         <section class="row">
           <div class="col-12">
-            <img :src="activePost.imgUrl" alt="">
+            <img class="img-fluid" :src="activePost.imgUrl" alt="">
           </div>
           <div class="col-12">
             <p>{{ activePost.body }}</p>
+            <div class="d-flex text-end">
+              <p>{{ activePost.likes.length }}</p>
+              <i @click="likePost(activePost)" class="mdi mdi-thumb-up selectable"></i>
+
+            </div>
           </div>
 
 
@@ -100,8 +105,11 @@ import { postsService } from './services/PostsService.js'
 import { Modal } from 'bootstrap'
 
 export default {
+
   setup() {
+
     const editable = ref({})
+
 
     watchEffect(()=>{
       editable.value = {...AppState.activePost}
@@ -110,8 +118,9 @@ export default {
 
     return {
       editable,
+      activePost: computed(()=> AppState.activePost),
       appState: computed(() => AppState),
-    activePost: computed(()=> AppState.activePost),
+
     
     async editPost(){
     try{
@@ -123,7 +132,10 @@ export default {
         Pop.error(error.message);
         logger.log(error);
     }
-  }
+  }, 
+  async likePost(activePost){
+        await postsService.likePost(activePost)
+      },
   
   
   }
