@@ -2,7 +2,11 @@
   <div class="container-fluid">
     <section class="row mt-4">
       <div class="col-12">
-        <img :src="account.picture" alt="profilePic" class="profilePic">
+        <!-- Need to make active profile in appstate account or make new page -->
+        <router-link @click="setAccountAsActive()" :to="{name: 'Profile', params: {profileId: account.id}}">
+
+          <img :src="account.picture" alt="profilePic" class="profilePic">
+</router-link>
       </div>
       <div class="col-12">
         <h5>{{ account.name }}</h5>
@@ -21,11 +25,21 @@
 <script>
 import { computed } from 'vue';
 import { AppState } from '../AppState.js';
-
+import { Post } from '../models/Post.js';
+import { accountService } from '../services/AccountService.js';
 export default {
+  // props: {
+  //   post: {type: Post, required: true}
+  // },
   setup(){
+
     return {
-      account: computed(()=> AppState.account)
+      account: computed(()=> AppState.account),
+
+
+      setAccountAsActive(){
+        accountService.setAccountAsActive()
+      }
     }
   }
 }

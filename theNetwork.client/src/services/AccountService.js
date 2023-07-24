@@ -2,6 +2,7 @@ import { AppState } from '../AppState'
 import { Account } from '../models/Account.js'
 import { logger } from '../utils/Logger'
 import { api } from './AxiosService'
+import { postsService } from './PostsService.js'
 
 class AccountService {
   async getAccount() {
@@ -18,6 +19,13 @@ class AccountService {
     // logger.log('account edited', res.data)
     let updatedAccount = new Account(res.data)
     AppState.account = updatedAccount
+  }
+
+  setAccountAsActive() {
+    let account = AppState.account
+    logger.log('account', account)
+    AppState.activeProfile = account
+    postsService.getActiveProfilePosts(account.id)
   }
 }
 

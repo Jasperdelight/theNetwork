@@ -2,16 +2,16 @@
   <h1>Profile Page</h1>
 
   <div class="container-fluid">
-    <section class="row" v-if="activeProfile">
+    <section class="row text-center" v-if="activeProfile">
       <div class="col-12 text-center">
         <img class="postImg" :src="activeProfile.coverImg" alt="">
       </div>
-      <div class="col-12 d-flex" >
+      <div class="col-12 text-center" >
          <h2>{{ activeProfile.name }}</h2>
          <img class="profilePic" :src="activeProfile.picture" alt="">
         </div>
         <div class="col-12">
-          <div class="d-flex">
+          <div class=" text-center">
             <label style="font-weight: bold;" for="bio">Biography:</label>
             <p name="bio" id="bio">{{ activeProfile.bio }}</p>
           </div>
@@ -23,8 +23,8 @@
             <label style="font-weight: bold;" for="class">Class:</label>
             <p name="class" id="class">{{ activeProfile.class }}</p>
           </div>
-            
-          <a v-if="activeProfile.linkedin" :href="activeProfile.linkedin"><i class="mdi mdi-linkedin fs-4"></i></a>
+          
+        <a v-if="activeProfile.linkedin" :href="activeProfile.linkedin"><i class="mdi mdi-linkedin fs-4"></i></a>
         
           <a v-if="activeProfile.github" :href="activeProfile.github"><i class="mdi mdi-github fs-4"></i></a>
         
@@ -93,6 +93,7 @@ export default {
       getProfile(),
       getActiveProfilePosts()
     })
+    
 
     return {
       activeProfile: computed(()=> AppState.activeProfile),
