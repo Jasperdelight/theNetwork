@@ -72,6 +72,8 @@ export default {
     return {
 
       account: computed(()=> AppState.account),
+      posts: computed(()=> AppState.posts),
+      activePosts: computed(()=> AppState.activeProfilePosts),
 
 
 
@@ -81,6 +83,7 @@ export default {
       
       async likePost(){
         await postsService.likePost(props.post)
+        logger.log('post liked')
       },
       async deletePost(){
         try{
