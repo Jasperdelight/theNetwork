@@ -15,11 +15,11 @@ class PostsService {
     AppState.older = res.data.newer
     AppState.page = res.data.page
     AppState.totalPages = res.data.totalPages
-    logger.log('page?', AppState.page)
+    // logger.log('page?', AppState.page)
   }
   async createPost(postData) {
     const res = await api.post('api/posts', postData)
-    logger.log('created post', res.data)
+    // logger.log('created post', res.data)
     const post = new Post(res.data)
     AppState.posts.unshift(post)
 
@@ -32,7 +32,7 @@ class PostsService {
     const postId = post.id
     // logger.log('post data in service', postId)
     const res = await api.post(`api/posts/${postId}/like`)
-    logger.log('post liked', res.data)
+    // logger.log('post liked', res.data)
     const likedPost = new Post(res.data)
     AppState.activePost = likedPost
     const index = AppState.posts.findIndex((p) => p.id == postId);
@@ -44,9 +44,9 @@ class PostsService {
   }
   async deletePost(post) {
     const postId = post.id
-    logger.log('[deleted post id]', postId)
+    // logger.log('[deleted post id]', postId)
     const res = await api.delete(`api/posts/${postId}`)
-    logger.log('post being deleted,', res.data)
+    // logger.log('post being deleted,', res.data)
     const postIndex = AppState.posts.findIndex((p) => p.id == postId)
     AppState.posts.splice(postIndex, 1)
   }
@@ -79,7 +79,7 @@ class PostsService {
   }
   async getActiveProfilePosts(profileId) {
     const res = await api.get(`api/profiles/${profileId}/posts`)
-    logger.log('found posts,', res.data)
+    // logger.log('found posts,', res.data)
     const foundPosts = res.data.posts.map(p => new Post(p))
     AppState.activeProfilePosts = foundPosts
     AppState.newer = res.data.older
@@ -105,7 +105,7 @@ class PostsService {
 
   async searchProfiles(searchQuery) {
     const res = await api.get(`api/profiles?query=${searchQuery}`)
-    logger.log('search results?', res.data)
+    // logger.log('search results?', res.data)
     const foundProfiles = res.data.map(fp => new Profile(fp))
     AppState.searchedProfiles = foundProfiles
     AppState.newer = res.data.older
@@ -115,7 +115,7 @@ class PostsService {
   }
 
   async editPost(postData) {
-    logger.log('postdata,', postData)
+    // logger.log('postdata,', postData)
     const postId = postData.id
     const res = await api.put(`api/posts/${postId}`, postData)
     let updatedPost = new Post(res.data)

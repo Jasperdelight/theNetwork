@@ -2,8 +2,8 @@
   <header>
     <Navbar />
   </header>
-  <main>
-    <div class="profile bg-light">
+  <main class="">
+    <div class="profile bgProfile">
       <ProfileBar v-if="account.id"/>
 
     </div>
@@ -181,7 +181,7 @@ footer {
 .right {
     width: 178px;
 float: right;
-margin-top: 160px;
+margin-top: 10px;
 // position: relative;
 // left: 1000px;
 
@@ -189,5 +189,9 @@ margin-top: 160px;
 .main {
   margin-left:178px;
   margin-right: 178px;
+ }
+
+ .bgProfile{
+  background-color: #e5e5e5;
  }
 </style>

@@ -23,7 +23,7 @@ class AccountService {
 
   setAccountAsActive() {
     let account = AppState.account
-    logger.log('account', account)
+    // logger.log('account', account)
     AppState.activeProfile = account
     postsService.getActiveProfilePosts(account.id)
   }
