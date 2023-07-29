@@ -24,10 +24,11 @@
             <p name="class" id="class">{{ activeProfile.class }}</p>
           </div>
           
-        <a v-if="activeProfile.linkedin" :href="activeProfile.linkedin"><i class="mdi mdi-linkedin fs-4"></i></a>
+        <a v-if="activeProfile.linkedin" :href="activeProfile.linkedin" target="_blank"><i class="mdi mdi-linkedin fs-4"></i></a>
         
-          <a v-if="activeProfile.github" :href="activeProfile.github"><i class="mdi mdi-github fs-4"></i></a>
-        
+          <a v-if="activeProfile.github" :href="activeProfile.github" target="_blank"><i class="mdi mdi-github fs-4"></i></a>
+          
+          <a v-if="activeProfile.resume" :href="activeProfile.resume" target="_blank"><i  class="mdi mdi-folder fs-4"></i></a>
         </div>
 
 

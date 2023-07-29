@@ -8,6 +8,10 @@
     {
       "path": "theNetwork",
       "name": "server"
+    },
+    {
+      "name": "theNetwork",
+      "path": "."
     }
   ],
   "settings": {

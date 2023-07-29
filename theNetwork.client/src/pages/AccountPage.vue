@@ -41,6 +41,10 @@
             <label for="github">github</label>
             <input class="form-control" type="url" id="github" minlength="3" maxlength="100" v-model="editable.github">
           </div>
+          <div class="mb-2">
+            <label for="resume">resume</label>
+            <input class="form-control" type="url" id="resume" minlength="3" maxlength="100" v-model="editable.resume">
+          </div>
           <div class="mb-2 text-end">
             <button class="btn btn-success" type="submit">Submit</button>
           </div>
